@@ -1,105 +1,131 @@
 # 🏥 AI Health Assistant
 
-AI-powered health prediction platform using ML/DL models to detect heart, diabetes, liver, breast cancer, and brain tumor risks, with Gemini-powered personalized lifestyle advice.
+AI-powered health prediction platform using Machine Learning (ML) and Deep Learning (DL) models to detect heart disease, diabetes, liver disease, breast cancer, and brain tumor risks. The system also provides personalized lifestyle recommendations using Google's Gemini AI.
 
-An integrated AI health prediction system that leverages **Machine Learning** and **Deep Learning** models to detect multiple diseases from clinical data and MRI scans, then converts each prediction into clear, actionable lifestyle guidance using the **Google Gemini LLM**.
+An integrated AI health prediction system that leverages **Machine Learning** and **Deep Learning** models to analyze clinical data and MRI scans, then converts each prediction into clear, actionable lifestyle guidance using the **Google Gemini API**.
 
 ---
 
 ## 🌟 Features
 
-- ❤️ **Heart Disease Prediction** — Analyzes 15 clinical features to detect potential risks.
+- ❤️ **Heart Disease Prediction** — Analyzes 15 clinical features to detect potential heart disease risk.
 - 🩸 **Diabetes Prediction** — Uses 8 health metrics to assess diabetes risk.
-- 🧬 **Liver Disease Prediction** — Evaluates liver health based on 10 biochemical parameters.
-- 🎗️ **Breast Cancer Detection** — Classifies tumors as Malignant or Benign with confidence levels.
-- 🧠 **Brain Tumor Detection** — Uses a Deep Learning (EfficientNetB0) model to analyze MRI images.
-- 🤖 **AI Lifestyle Advisor** — Integrates with Gemini 2.5 Flash to generate structured, easy-to-understand diet, exercise, and prevention advice based on prediction results.
+- 🧬 **Liver Disease Prediction** — Evaluates liver health using 10 biochemical parameters.
+- 🎗️ **Breast Cancer Detection** — Classifies tumors as **Malignant** or **Benign**.
+- 🧠 **Brain Tumor Detection** — Uses an EfficientNetB0 Deep Learning model to analyze MRI images.
+- 🤖 **AI Lifestyle Advisor** — Generates personalized diet, exercise, and prevention advice using the Google Gemini API.
+
+---
 
 ## 💡 Highlights
 
-- 🔍 Combines classical ML models (Random Forest, SVM) with a Deep Learning model for MRI-based tumor detection.
-- ⚙️ Modular Flask backend — each disease has its own dedicated predictor module for clean, maintainable code.
-- 📊 Covers a wide range of clinical inputs, from 15 cardiac features to 10 liver biochemical parameters, for broad diagnostic coverage.
-- 🖥️ Lightweight frontend (Jinja2 + vanilla CSS) — no heavy JS framework overhead, easy to run locally.
-- 🔐 API keys and sensitive config kept out of source control via `.env`, following good security practice.
+- 🔍 Combines classical Machine Learning models (Random Forest, SVM) with Deep Learning for comprehensive disease prediction.
+- ⚙️ Modular Flask backend with separate predictor modules for each disease.
+- 📊 Supports multiple clinical datasets and MRI image analysis.
+- 🖥️ Lightweight frontend built using Jinja2 templates and Vanilla CSS.
+- 🔐 Secure API key management using a `.env` file.
 
 ---
 
 ## 🛠️ Technology Stack
 
 | Layer | Technologies |
-|---|---|
+|-------|--------------|
 | **Backend** | Flask (Python) |
-| **Machine Learning** | Scikit-learn, Joblib (Random Forest, SVM, etc.) |
+| **Machine Learning** | Scikit-learn, Joblib |
 | **Deep Learning** | TensorFlow, Keras, OpenCV (EfficientNetB0) |
 | **AI Integration** | Google Gemini API |
-| **Data Handling** | Pandas, NumPy |
-| **Frontend** | Jinja2 Templates, Vanilla CSS |
+| **Data Processing** | Pandas, NumPy |
+| **Frontend** | HTML, Jinja2, CSS |
 
 ---
 
 ## 📁 Project Structure
 
-\```
-openHealth1/
-├── app.py                  # Main Flask Application
-├── src/                    # Core Prediction Logic
+```text
+Ai-Health-Assistant/
+│
+├── app.py
+├── src/
 │   ├── brain_tumor_predictor.py
 │   ├── breast_predictor.py
 │   ├── diabetes_predictor.py
 │   ├── heart_predictor.py
 │   ├── liver_predictor.py
-│   └── lifestyle_llm.py    # Gemini API Integration
-├── models/                 # Pre-trained ML/DL Models (.pkl, .keras)
-├── static/                 # CSS and Static Assets
-├── templates/              # HTML Templates
-├── requirements.txt        # Project Dependencies
-└── .env                    # Environment Variables (API Keys)
-\```
+│   └── lifestyle_llm.py
+│
+├── models/
+├── static/
+├── templates/
+├── notebook/
+├── requirements.txt
+├── feature.py
+└── README.md
+```
 
 ---
 
 ## 🚀 Installation & Setup
 
-**1. Clone the repository**
-\```bash
-git clone https://github.com/Sunyasloka/ai-health-assistant.git
-cd ai-health-assistant
-\```
+### 1. Clone the Repository
 
-**2. Set up a virtual environment**
-\```bash
+```bash
+git clone https://github.com/saswati78/Ai-Health-Assistant.git
+cd Ai-Health-Assistant
+```
+
+### 2. Create a Virtual Environment
+
+**Windows**
+
+```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-\```
+venv\Scripts\activate
+```
 
-**3. Install dependencies**
-\```bash
+**Linux/macOS**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
-\```
+```
 
-**4. Configure environment variables**
+### 4. Configure Environment Variables
 
-Create a `.env` file in the root directory and add your Gemini API key:
-\```
-GEMINI_API_KEY='your_api_key_here'
-\```
+Create a `.env` file in the project root and add your Gemini API key:
 
-**5. Run the application**
-\```bash
+```env
+GEMINI_API_KEY=your_api_key_here
+```
+
+### 5. Run the Application
+
+```bash
 python app.py
-\```
+```
 
-Open `http://127.0.0.1:5000` in your browser.
+Open your browser and visit:
 
----
-
-## ⚠️ Disclaimer
-
-This application is for **educational and demonstration purposes only**. The predictions generated by the models should not be considered professional medical advice. Always consult with a qualified healthcare provider for medical concerns.
+```
+http://127.0.0.1:5000
+```
 
 ---
 
-## 📄 License
+## 📌 Future Enhancements
 
-This project is open source. Feel free to use, modify, and share with attribution.
+- Add user authentication
+- Store prediction history
+- Deploy using Docker
+- Improve model accuracy
+- Add more disease prediction modules
+- Responsive mobile interface
+
+---
+
