@@ -1,0 +1,402 @@
+<!-- <h2>Heart Disease Prediction</h2>
+
+<form action="/predict-heart" method="POST">
+
+Age: <input name="Age"><br>
+RestingBP: <input name="RestingBP"><br>
+Cholesterol: <input name="Cholesterol"><br>
+FastingBS: <input name="FastingBS"><br>
+MaxHR: <input name="MaxHR"><br>
+Oldpeak: <input name="Oldpeak"><br>
+
+Sex_M: <input name="Sex_M"><br>
+ChestPainType_ATA: <input name="ChestPainType_ATA"><br>
+ChestPainType_NAP: <input name="ChestPainType_NAP"><br>
+ChestPainType_TA: <input name="ChestPainType_TA"><br>
+
+RestingECG_Normal: <input name="RestingECG_Normal"><br>
+RestingECG_ST: <input name="RestingECG_ST"><br>
+
+ExerciseAngina_Y: <input name="ExerciseAngina_Y"><br>
+
+ST_Slope_Flat: <input name="ST_Slope_Flat"><br>
+ST_Slope_Up: <input name="ST_Slope_Up"><br>
+
+<button type="submit">Predict</button>
+
+</form> 
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Disease Prediction</title>
+    <style>
+        body { font-family: Arial; max-width: 500px; margin: auto; }
+        .box { margin: 12px 0; }
+    </style>
+</head>
+<body>
+
+<h2>Heart Health Check</h2>
+
+<form action="/predict-heart" method="post">
+
+    <div class="box">
+        <label>Age</label><br>
+        <input type="number" name="Age" required>
+    </div>
+
+    <div class="box">
+        <label>Gender</label><br>
+        <select name="Sex_M">
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <label>Blood Pressure</label><br>
+        <input type="range" name="RestingBP" min="80" max="200" step="1">
+    </div>
+
+    <div class="box">
+        <label>Cholesterol Level</label><br>
+        <input type="range" name="Cholesterol" min="100" max="400" step="1">
+    </div>
+
+    <div class="box">
+        <label>High Blood Sugar?</label><br>
+        <select name="FastingBS">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <label>Maximum Heart Rate Achieved</label><br>
+        <input type="range" name="MaxHR" min="60" max="220" step="1">
+    </div>
+
+    <div class="box">
+        <label>Chest Pain Severity</label><br>
+        <input type="range" name="Oldpeak" min="0" max="6" step="0.1">
+    </div>
+
+    <!-- Chest Pain Type 
+    <div class="box">
+        <label>Type of Chest Pain</label><br>
+        <select onchange="setChestPain(this.value)">
+            <option value="ATA">Mild (Angina)</option>
+            <option value="NAP">Moderate (Non-Anginal)</option>
+            <option value="TA">Severe</option>
+        </select>
+    </div>
+
+    <!-- ECG 
+    <div class="box">
+        <label>ECG Result</label><br>
+        <select onchange="setECG(this.value)">
+            <option value="Normal">Normal</option>
+            <option value="ST">Abnormal</option>
+        </select>
+    </div>
+
+    <!-- Exercise Angina 
+    <div class="box">
+        <label>Chest Pain During Exercise?</label><br>
+        <select name="ExerciseAngina_Y">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+
+    <!-- ST Slope 
+    <div class="box">
+        <label>Heart Graph Pattern</label><br>
+        <select onchange="setSlope(this.value)">
+            <option value="Flat">Flat</option>
+            <option value="Up">Upward</option>
+        </select>
+    </div>
+
+    <!-- Hidden Fields 
+    <input type="hidden" name="ChestPainType_ATA" id="cp_ata">
+    <input type="hidden" name="ChestPainType_NAP" id="cp_nap">
+    <input type="hidden" name="ChestPainType_TA" id="cp_ta">
+
+    <input type="hidden" name="RestingECG_Normal" id="ecg_norm">
+    <input type="hidden" name="RestingECG_ST" id="ecg_st">
+
+    <input type="hidden" name="ST_Slope_Flat" id="slope_flat">
+    <input type="hidden" name="ST_Slope_Up" id="slope_up">
+
+    <button type="submit">Predict</button>
+
+</form>
+
+<script>
+// Chest pain encoding
+function setChestPain(val) {
+    document.getElementById("cp_ata").value = val === "ATA" ? 1 : 0;
+    document.getElementById("cp_nap").value = val === "NAP" ? 1 : 0;
+    document.getElementById("cp_ta").value = val === "TA" ? 1 : 0;
+}
+
+// ECG encoding
+function setECG(val) {
+    document.getElementById("ecg_norm").value = val === "Normal" ? 1 : 0;
+    document.getElementById("ecg_st").value = val === "ST" ? 1 : 0;
+}
+
+// Slope encoding
+function setSlope(val) {
+    document.getElementById("slope_flat").value = val === "Flat" ? 1 : 0;
+    document.getElementById("slope_up").value = val === "Up" ? 1 : 0;
+}
+
+// set defaults
+window.onload = function() {
+    setChestPain("ATA");
+    setECG("Normal");
+    setSlope("Flat");
+};
+</script>
+
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Disease Prediction</title>
+    <style>
+        body { font-family: Arial; max-width: 500px; margin: auto; }
+        .box { margin: 12px 0; }
+    </style>
+</head>
+<body>
+
+<h2>Heart Health Check</h2>
+
+<form action="/predict-heart" method="post">
+
+    <div class="box">
+        <label>Age</label><br>
+        <input type="number" name="Age" required>
+    </div>
+
+    <div class="box">
+        <label>Gender</label><br>
+        <select name="Sex_M">
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <label>Blood Pressure</label><br>
+        <input type="range" name="RestingBP" min="80" max="200" step="1">
+    </div>
+
+    <div class="box">
+        <label>Cholesterol Level</label><br>
+        <input type="range" name="Cholesterol" min="100" max="400" step="1">
+    </div>
+
+    <div class="box">
+        <label>High Blood Sugar?</label><br>
+        <select name="FastingBS">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <label>Maximum Heart Rate Achieved</label><br>
+        <input type="range" name="MaxHR" min="60" max="220" step="1">
+    </div>
+
+    <div class="box">
+        <label>Chest Pain Severity</label><br>
+        <input type="range" name="Oldpeak" min="0" max="6" step="0.1">
+    </div>
+
+    <div class="box">
+        <label>Type of Chest Pain</label><br>
+        <select onchange="setChestPain(this.value)">
+            <option value="ATA">Mild (Angina)</option>
+            <option value="NAP">Moderate (Non-Anginal)</option>
+            <option value="TA">Severe</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <label>ECG Result</label><br>
+        <select onchange="setECG(this.value)">
+            <option value="Normal">Normal</option>
+            <option value="ST">Abnormal</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <label>Chest Pain During Exercise?</label><br>
+        <select name="ExerciseAngina_Y">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <label>Heart Graph Pattern</label><br>
+        <select onchange="setSlope(this.value)">
+            <option value="Flat">Flat</option>
+            <option value="Up">Upward</option>
+        </select>
+    </div>
+
+    <input type="hidden" name="ChestPainType_ATA" id="cp_ata">
+    <input type="hidden" name="ChestPainType_NAP" id="cp_nap">
+    <input type="hidden" name="ChestPainType_TA" id="cp_ta">
+
+    <input type="hidden" name="RestingECG_Normal" id="ecg_norm">
+    <input type="hidden" name="RestingECG_ST" id="ecg_st">
+
+    <input type="hidden" name="ST_Slope_Flat" id="slope_flat">
+    <input type="hidden" name="ST_Slope_Up" id="slope_up">
+
+    <button type="submit">Predict</button>
+
+</form>
+
+<script>
+function setChestPain(val) {
+    document.getElementById("cp_ata").value = val === "ATA" ? 1 : 0;
+    document.getElementById("cp_nap").value = val === "NAP" ? 1 : 0;
+    document.getElementById("cp_ta").value = val === "TA" ? 1 : 0;
+}
+
+function setECG(val) {
+    document.getElementById("ecg_norm").value = val === "Normal" ? 1 : 0;
+    document.getElementById("ecg_st").value = val === "ST" ? 1 : 0;
+}
+
+function setSlope(val) {
+    document.getElementById("slope_flat").value = val === "Flat" ? 1 : 0;
+    document.getElementById("slope_up").value = val === "Up" ? 1 : 0;
+}
+
+window.onload = function() {
+    setChestPain("ATA");
+    setECG("Normal");
+    setSlope("Flat");
+};
+</script>
+
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Heart Prediction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">❤️ Heart Health Check</div>
+
+<div class="result-card">
+<form action="/predict-heart" method="post">
+
+<div class="box"><input type="number" name="Age" placeholder="Age" required></div>
+
+<div class="box">
+<select name="Sex_M">
+<option value="1">Male</option>
+<option value="0">Female</option>
+</select>
+</div>
+
+<div class="box"><input type="number" name="RestingBP" placeholder="Blood Pressure"></div>
+<div class="box"><input type="number" name="Cholesterol" placeholder="Cholesterol"></div>
+
+<div class="box">
+<select name="FastingBS">
+<option value="1">High Sugar</option>
+<option value="0">Normal</option>
+</select>
+</div>
+
+<div class="box"><input type="number" name="MaxHR" placeholder="Max Heart Rate"></div>
+<div class="box"><input type="number" step="0.1" name="Oldpeak" placeholder="Chest Pain Level"></div>
+
+<input type="hidden" name="ChestPainType_ATA" value="1">
+<input type="hidden" name="ChestPainType_NAP" value="0">
+<input type="hidden" name="ChestPainType_TA" value="0">
+<input type="hidden" name="RestingECG_Normal" value="1">
+<input type="hidden" name="RestingECG_ST" value="0">
+<input type="hidden" name="ExerciseAngina_Y" value="0">
+<input type="hidden" name="ST_Slope_Flat" value="1">
+<input type="hidden" name="ST_Slope_Up" value="0">
+
+<button type="submit">🔍 Predict</button>
+
+</form>
+</div>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Heart Prediction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">❤️ Heart Disease Check</div>
+
+<div class="card">
+<form action="/predict-heart" method="POST">
+
+<input type="number" name="Age" placeholder="Age" required>
+
+<select name="Sex_M">
+<option value="1">Male</option>
+<option value="0">Female</option>
+</select>
+
+<input type="number" name="RestingBP" placeholder="Blood Pressure">
+<input type="number" name="Cholesterol" placeholder="Cholesterol">
+
+<select name="FastingBS">
+<option value="1">High Sugar</option>
+<option value="0">Normal</option>
+</select>
+
+<input type="number" name="MaxHR" placeholder="Max Heart Rate">
+<input type="number" step="0.1" name="Oldpeak" placeholder="Chest Pain Level">
+
+<input type="hidden" name="ChestPainType_ATA" value="1">
+<input type="hidden" name="ChestPainType_NAP" value="0">
+<input type="hidden" name="ChestPainType_TA" value="0">
+<input type="hidden" name="RestingECG_Normal" value="1">
+<input type="hidden" name="RestingECG_ST" value="0">
+<input type="hidden" name="ExerciseAngina_Y" value="0">
+<input type="hidden" name="ST_Slope_Flat" value="1">
+<input type="hidden" name="ST_Slope_Up" value="0">
+
+<button type="submit">Predict</button>
+
+</form>
+</div>
+
+</body>
+</html>

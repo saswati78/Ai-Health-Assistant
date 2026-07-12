@@ -1,0 +1,1446 @@
+<!-- <!-- <h2>Prediction Result</h2>
+
+<p>{{result}}</p>
+
+<h2>Lifestyle & Diet Recommendation</h2>
+
+<pre>{{advice}}</pre>
+
+<a href="/">Go Back</a> -->
+
+<!-- <h2>Prediction Result</h2>
+
+<h3>{{ prediction }}</h3>
+
+<a href="/">Go Back</a> 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Prediction Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<h2>Prediction Result</h2>
+
+<div class="result">
+
+<h3>{{ prediction }}</h3>
+
+</div>
+
+<a href="/">Go Back</a>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Prediction Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+<h2>Prediction Result</h2>
+
+<h1>{{ prediction }}</h1>
+
+<a href="/">Back to Home</a>
+
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Prediction Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+<h2>Prediction Result</h2>
+
+<h1>{{ prediction }}</h1>
+
+</div>
+
+<div class="result-card">
+
+<h2>AI Lifestyle & Diet Recommendations</h2>
+
+<pre style="text-align:left; white-space:pre-wrap;">
+{{ advice }}
+</pre>
+
+</div>
+
+<br>
+
+<a href="/">Back to Home</a>
+
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Prediction Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+<h2>Prediction Result</h2>
+
+<h1>{{ prediction }}</h1>
+
+</div>
+
+<div class="result-card">
+
+<h2>AI Lifestyle & Diet Recommendations</h2>
+
+<pre style="text-align:left; white-space:pre-wrap;">
+{{ advice }}
+</pre>
+
+</div>
+
+<br>
+
+<a href="/">Back to Home</a>
+
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="result-card">
+    <h2>Prediction Result</h2>
+    <h1>{{ prediction }}</h1>
+</div>
+
+<div class="result-card">
+    <h2>AI Lifestyle & Diet Recommendations</h2>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Recommendation</th>
+        </tr>
+
+        {% for key, value in advice.items() %}
+        <tr>
+            <td><b>{{ key }}</b></td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+<br>
+<a href="/">Back to Home</a>
+
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">📊 Prediction Result</div>
+
+<div class="result-card">
+    <h2>Prediction</h2>
+
+    <h1 class="{% if 'no' in prediction.lower() or 'negative' in prediction.lower() %}safe{% else %}danger{% endif %}">
+    {{ prediction }}
+    </h1>
+</div>
+
+<div class="result-card">
+    <h2>AI Lifestyle & Diet Recommendations</h2>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Recommendation</th>
+        </tr>
+
+        {% for key, value in advice.items() %}
+        <tr>
+            <td><b>{{ key }}</b></td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<a href="/">⬅ Back to Home</a>
+
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Result</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">📊 Prediction Result</div>
+
+<div class="card">
+
+<h2>Prediction</h2>
+
+<h1 class="{% if 'no' in prediction.lower() or 'negative' in prediction.lower() %}safe{% else %}danger{% endif %}">
+{{ prediction }}
+</h1>
+
+</div>
+
+<div class="card">
+
+<h2>AI Recommendations</h2>
+
+<table>
+<tr>
+<th>Category</th>
+<th>Details</th>
+</tr>
+
+{% for key, value in advice.items() %}
+<tr>
+<td>{{ key }}</td>
+<td>{{ value }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+<div style="text-align:center;">
+<a href="/">Back</a>
+</div>
+
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="navbar">📊 Prediction Result</div>
+
+<div class="card">
+    <h2>Prediction</h2>
+    <h1 class="{% if 'no' in prediction.lower() or 'negative' in prediction.lower() %}safe{% else %}danger{% endif %}">
+        {{ prediction }}
+    </h1>
+</div>
+
+<div class="card">
+    <h2>Disease Severity</h2>
+    <canvas id="severityChart" width="400" height="100"></canvas>
+</div>
+
+<div class="card">
+    <h2>AI Recommendations</h2>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Details</th>
+        </tr>
+        {% for key, value in advice.items() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div style="text-align:center; margin-top:20px;">
+    <a href="/">Back</a>
+</div>
+<script>
+    // Read severity from the data attribute
+    const container = document.getElementById('severityChartContainer');
+    const severity = parseFloat(container.dataset.severity);
+
+    const bgColor = severity > 70 ? 'red' :
+                    severity > 40 ? 'orange' : 'green';
+
+    const ctx = document.getElementById('severityChart').getContext('2d');
+
+    const severityChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Severity'],
+            datasets: [{
+                label: 'Severity (%)',
+                data: [severity],
+                backgroundColor: bgColor,
+                borderColor: 'black',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: { min: 0, max: 100 }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .navbar { background: #0077b6; color: white; padding: 15px; font-size: 1.3em; border-radius: 5px; margin-bottom: 20px; text-align: center; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h1.safe { color: green; }
+        h1.danger { color: red; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        table, th, td { border: 1px solid #ccc; }
+        th, td { padding: 10px; text-align: left; }
+        th { background: #0077b6; color: white; }
+        a { display: inline-block; margin-top: 10px; text-decoration: none; color: #0077b6; font-weight: bold; }
+        canvas { margin-top: 15px; background: #f9f9f9; border-radius: 5px; padding: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">📊 Prediction Result</div>
+
+
+<div class="card">
+    <h2>Prediction</h2>
+    <h1 class="{% if 'no' in prediction.lower() or 'negative' in prediction.lower() %}safe{% else %}danger{% endif %}">
+        {{ prediction }}
+    </h1>
+</div>
+
+<div class="card">
+    <h2>AI Recommendations</h2>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Details</th>
+        </tr>
+        {% for key, value in advice.items() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+<div class="card">
+    <h2>Disease Severity</h2>
+    
+    <div id="severityChartContainer" data-severity="{{ severity | default(0) }}"></div>
+    <canvas id="severityChart" width="400" height="100"></canvas>
+</div>
+
+<div style="text-align:center;">
+    <a href="/">🔙 Back</a>
+</div>
+
+
+<script>
+    // Read severity safely
+    const container = document.getElementById('severityChartContainer');
+    const severity = parseFloat(container.dataset.severity);
+
+    const ctx = document.getElementById('severityChart').getContext('2d');
+
+    const severityChart = new Chart(ctx, {
+        type: 'line',  // line chart
+        data: {
+            labels: ['Patient'],  // x-axis label
+            datasets: [{
+                label: 'Severity (%)',
+                data: [severity],
+                fill: false,
+                borderColor: severity > 70 ? 'red' : severity > 40 ? 'orange' : 'green',
+                tension: 0.3,
+                pointBackgroundColor: severity > 70 ? 'red' : severity > 40 ? 'orange' : 'green',
+                pointRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    min: 0,
+                    max: 100,
+                    title: { display: true, text: 'Severity (%)' }
+                },
+                x: {
+                    title: { display: true, text: 'Patient' }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html> -->
+
+<!-- <!-- <h2>Prediction Result</h2>
+
+<p>{{result}}</p>
+
+<h2>Lifestyle & Diet Recommendation</h2>
+
+<pre>{{advice}}</pre>
+
+<a href="/">Go Back</a> -->
+
+<!-- <h2>Prediction Result</h2>
+
+<h3>{{ prediction }}</h3>
+
+<a href="/">Go Back</a> 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Prediction Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<h2>Prediction Result</h2>
+
+<div class="result">
+
+<h3>{{ prediction }}</h3>
+
+</div>
+
+<a href="/">Go Back</a>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Prediction Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+<h2>Prediction Result</h2>
+
+<h1>{{ prediction }}</h1>
+
+<a href="/">Back to Home</a>
+
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Prediction Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+<h2>Prediction Result</h2>
+
+<h1>{{ prediction }}</h1>
+
+</div>
+
+<div class="result-card">
+
+<h2>AI Lifestyle & Diet Recommendations</h2>
+
+<pre style="text-align:left; white-space:pre-wrap;">
+{{ advice }}
+</pre>
+
+</div>
+
+<br>
+
+<a href="/">Back to Home</a>
+
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Prediction Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+<h2>Prediction Result</h2>
+
+<h1>{{ prediction }}</h1>
+
+</div>
+
+<div class="result-card">
+
+<h2>AI Lifestyle & Diet Recommendations</h2>
+
+<pre style="text-align:left; white-space:pre-wrap;">
+{{ advice }}
+</pre>
+
+</div>
+
+<br>
+
+<a href="/">Back to Home</a>
+
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="result-card">
+    <h2>Prediction Result</h2>
+    <h1>{{ prediction }}</h1>
+</div>
+
+<div class="result-card">
+    <h2>AI Lifestyle & Diet Recommendations</h2>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Recommendation</th>
+        </tr>
+
+        {% for key, value in advice.items() %}
+        <tr>
+            <td><b>{{ key }}</b></td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+<br>
+<a href="/">Back to Home</a>
+
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">📊 Prediction Result</div>
+
+<div class="result-card">
+    <h2>Prediction</h2>
+
+    <h1 class="{% if 'no' in prediction.lower() or 'negative' in prediction.lower() %}safe{% else %}danger{% endif %}">
+    {{ prediction }}
+    </h1>
+</div>
+
+<div class="result-card">
+    <h2>AI Lifestyle & Diet Recommendations</h2>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Recommendation</th>
+        </tr>
+
+        {% for key, value in advice.items() %}
+        <tr>
+            <td><b>{{ key }}</b></td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<a href="/">⬅ Back to Home</a>
+
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Result</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">📊 Prediction Result</div>
+
+<div class="card">
+
+<h2>Prediction</h2>
+
+<h1 class="{% if 'no' in prediction.lower() or 'negative' in prediction.lower() %}safe{% else %}danger{% endif %}">
+{{ prediction }}
+</h1>
+
+</div>
+
+<div class="card">
+
+<h2>AI Recommendations</h2>
+
+<table>
+<tr>
+<th>Category</th>
+<th>Details</th>
+</tr>
+
+{% for key, value in advice.items() %}
+<tr>
+<td>{{ key }}</td>
+<td>{{ value }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+<div style="text-align:center;">
+<a href="/">Back</a>
+</div>
+
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="navbar">📊 Prediction Result</div>
+
+<div class="card">
+    <h2>Prediction</h2>
+    <h1 class="{% if 'no' in prediction.lower() or 'negative' in prediction.lower() %}safe{% else %}danger{% endif %}">
+        {{ prediction }}
+    </h1>
+</div>
+
+<div class="card">
+    <h2>Disease Severity</h2>
+    <canvas id="severityChart" width="400" height="100"></canvas>
+</div>
+
+<div class="card">
+    <h2>AI Recommendations</h2>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Details</th>
+        </tr>
+        {% for key, value in advice.items() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div style="text-align:center; margin-top:20px;">
+    <a href="/">Back</a>
+</div>
+<script>
+    // Read severity from the data attribute
+    const container = document.getElementById('severityChartContainer');
+    const severity = parseFloat(container.dataset.severity);
+
+    const bgColor = severity > 70 ? 'red' :
+                    severity > 40 ? 'orange' : 'green';
+
+    const ctx = document.getElementById('severityChart').getContext('2d');
+
+    const severityChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Severity'],
+            datasets: [{
+                label: 'Severity (%)',
+                data: [severity],
+                backgroundColor: bgColor,
+                borderColor: 'black',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: { min: 0, max: 100 }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="navbar">📊 Prediction Result</div>
+
+<div class="card">
+    <h2>Prediction</h2>
+    <h1 class="{% if 'no' in prediction.lower() or 'negative' in prediction.lower() %}safe{% else %}danger{% endif %}">
+        {{ prediction }}
+    </h1>
+</div>
+
+<div class="card" id="severityChartContainer" data-severity="{{ severity }}">
+    <h2>Disease Severity</h2>
+    <canvas id="severityChart" width="400" height="150"></canvas>
+</div>
+
+<div class="card">
+    <h2>AI Recommendations</h2>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Details</th>
+        </tr>
+        {% for key, value in advice.items() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div style="text-align:center; margin-top:20px;">
+    <a href="/">Back</a>
+</div>
+
+<script>
+    const container = document.getElementById('severityChartContainer');
+    const severity = parseFloat(container.dataset.severity);
+
+    const ctx = document.getElementById('severityChart').getContext('2d');
+
+    const severityChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Start', 'Severity'], // x-axis
+            datasets: [{
+                label: 'Severity (%)',
+                data: [0, severity],        // line from 0 → severity
+                borderColor: severity > 70 ? 'red' : severity > 40 ? 'orange' : 'green',
+                backgroundColor: 'rgba(0,0,0,0)',
+                fill: false,
+                tension: 0.3,
+                pointRadius: 6,
+                pointBackgroundColor: severity > 70 ? 'red' : severity > 40 ? 'orange' : 'green'
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    min: 0,
+                    max: 100,
+                    title: { display: true, text: 'Severity (%)' }
+                },
+                x: {
+                    title: { display: true, text: 'Progress' }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Prediction Result</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f5f5f5;
+    margin: 20px;
+}
+
+.navbar {
+    background: #0077b6;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1.3em;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.safe { color: green; }
+.danger { color: red; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+th {
+    background: #0077b6;
+    color: white;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">📊 Prediction Result</div>
+
+
+<div class="card">
+<h2>Prediction</h2>
+
+<h1 class="{% if 'no' in prediction|string|lower or 'negative' in prediction|string|lower %}safe{% else %}danger{% endif %}">
+{{ prediction }}
+</h1>
+
+</div>
+
+
+<div class="card" id="severityChartContainer" data-severity="{{ severity }}">
+<h2>Disease Severity</h2>
+<canvas id="severityChart"></canvas>
+</div>
+
+
+<div class="card">
+<h2>AI Recommendations</h2>
+
+<table>
+<tr>
+<th>Category</th>
+<th>Details</th>
+</tr>
+
+{% for key, value in advice.items() if key != "is_dangerous" %}
+<tr>
+<td>{{ key }}</td>
+<td>{{ value }}</td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+
+<a href="/">⬅ Back</a>
+
+<script>
+const container = document.getElementById('severityChartContainer');
+const severity = parseFloat(container.dataset.severity);
+
+// detect safe/unsafe
+const predictionText = "{{ prediction }}".toLowerCase();
+
+const isSafe = predictionText.includes("no") || predictionText.includes("negative");
+
+// color logic
+const color = isSafe ? 'green' :
+              (severity > 70 ? 'red' :
+              (severity > 40 ? 'orange' : 'green'));
+
+const ctx = document.getElementById('severityChart').getContext('2d');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Start', 'Current'],
+        datasets: [{
+            data: [0, severity],
+            borderColor: color,
+            tension: 0.4,
+            pointBackgroundColor: color,
+            pointRadius: 6,
+            fill: false
+        }]
+    },
+    options: {
+        responsive: true,
+        animation: { duration: 1500 },
+        scales: {
+            y: {
+                min: 0,
+                max: 100,
+                title: { display: true, text: 'Severity (%)' }
+            }
+        },
+        plugins: {
+            legend: { display: false }
+        }
+    }
+});
+</script>
+
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Prediction Result</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f5f5f5;
+    margin: 20px;
+}
+
+.navbar {
+    background: #0077b6;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1.3em;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.safe { color: green; }
+.danger { color: red; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+th {
+    background: #0077b6;
+    color: white;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #0077b6;
+}
+
+/* ✅ SMALL GRAPH */
+.chart-container {
+    width: 400px;
+    height: 200px;
+    margin: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">📊 Prediction Result</div>
+
+<div class="card">
+<h2>Prediction</h2>
+
+<h1 class="{% if 'no' in prediction|string|lower or 'negative' in prediction|string|lower %}safe{% else %}danger{% endif %}">
+{{ prediction }}
+</h1>
+
+</div>
+
+<div class="card" id="severityChartContainer" data-severity="{{ severity }}">
+<h2>Disease Severity</h2>
+
+<div class="chart-container">
+    <canvas id="severityChart"></canvas>
+</div>
+
+</div>
+
+<div class="card">
+<h2>AI Recommendations</h2>
+
+<table>
+<tr>
+<th>Category</th>
+<th>Details</th>
+</tr>
+
+{% for key, value in advice.items() if key != "is_dangerous" %}
+<tr>
+<td>{{ key }}</td>
+<td>{{ value }}</td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+
+<a href="/">⬅ Back</a>
+
+<script>
+const container = document.getElementById('severityChartContainer');
+const severity = parseFloat(container.dataset.severity);
+
+// detect safe/unsafe
+const predictionText = "{{ prediction }}".toLowerCase();
+const isSafe = predictionText.includes("no") || predictionText.includes("negative");
+
+// color logic
+const color = isSafe ? 'green' :
+              (severity > 70 ? 'red' :
+              (severity > 40 ? 'orange' : 'green'));
+
+const ctx = document.getElementById('severityChart').getContext('2d');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Start', 'Current'],
+        datasets: [{
+            data: [0, severity],
+            borderColor: color,
+            tension: 0.4,
+            pointBackgroundColor: color,
+            pointRadius: 6,
+            fill: false
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,   // 🔥 makes size work
+        animation: {
+            duration: 1200
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 100,
+                title: {
+                    display: true,
+                    text: 'Severity (%)'
+                }
+            }
+        },
+        plugins: {
+            legend: { display: false }
+        }
+    }
+});
+</script>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Prediction Result</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    font-family: Arial;
+    background: linear-gradient(to right, #e0f7fa, #f5f5f5);
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background: #0077b6;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+/* Card */
+.card {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Prediction text */
+.safe { color: green; }
+.danger { color: red; }
+
+.prediction-text {
+    font-size: 2em;
+    text-align: center;
+}
+
+/* Image */
+img {
+    display: block;
+    margin: 15px auto;
+    border-radius: 10px;
+    max-width: 300px;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background: #0077b6;
+    color: white;
+}
+
+/* Chart */
+.chart-container {
+    width: 100%;
+    max-width: 500px;
+    height: 250px;
+    margin: auto;
+}
+
+/* Back Button */
+a {
+    display: block;
+    text-align: center;
+    margin: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #0077b6;
+    font-size: 1.1em;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">📊 Prediction Result</div>
+
+<!-- Prediction -->
+<div class="card">
+
+<h2>Prediction</h2>
+
+<h1 class="prediction-text 
+{% if 'no' in prediction|string|lower or 'negative' in prediction|string|lower %}
+safe
+{% else %}
+danger
+{% endif %}">
+{{ prediction }}
+</h1>
+
+{% if confidence %}
+<h3 style="text-align:center;">Confidence: {{ confidence }}%</h3>
+{% endif %}
+
+{% if image_path %}
+<img src="{{ image_path }}">
+{% endif %}
+
+</div>
+
+<!-- Severity Graph -->
+<div class="card" id="severityChartContainer" data-severity="{{ severity }}">
+
+<h2>Disease Severity</h2>
+
+<div class="chart-container">
+    <canvas id="severityChart"></canvas>
+</div>
+
+</div>
+
+<!-- Recommendations -->
+<div class="card">
+
+<h2>AI Recommendations</h2>
+
+<table>
+<tr>
+<th>Category</th>
+<th>Details</th>
+</tr>
+
+{% for key, value in advice.items() if key != "is_dangerous" %}
+<tr>
+<td>{{ key }}</td>
+<td>{{ value }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+<a href="/">⬅ Back to Home</a>
+
+<script>
+const container = document.getElementById('severityChartContainer');
+const severity = parseFloat(container.dataset.severity);
+
+// detect safe/unsafe
+const predictionText = "{{ prediction }}".toLowerCase();
+const isSafe = predictionText.includes("no") || predictionText.includes("negative");
+
+// color logic
+const color = isSafe ? 'green' :
+              (severity > 70 ? 'red' :
+              (severity > 40 ? 'orange' : 'green'));
+
+const ctx = document.getElementById('severityChart').getContext('2d');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Start', 'Current'],
+        datasets: [{
+            label: "Severity",
+            data: [0, severity],
+            borderColor: color,
+            backgroundColor: color,
+            tension: 0.4,
+            pointRadius: 6,
+            fill: false
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+            duration: 1200
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 100,
+                title: {
+                    display: true,
+                    text: 'Severity (%)'
+                }
+            }
+        },
+        plugins: {
+            legend: { display: false }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Liver Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h2>Liver Disease Prediction</h2>
+
+<div class="container">
+<form action="/predict-liver" method="post">
+
+    <input name="Age" placeholder="Age" required>
+    
+    <input name="Gender" placeholder="Gender (1=Male, 0=Female)" required>
+
+    <input name="Total_Bilirubin" placeholder="Total Bilirubin" required>
+    
+    <input name="Direct_Bilirubin" placeholder="Direct Bilirubin" required>
+
+    <input name="Alkaline_Phosphotase" placeholder="Alkaline Phosphotase" required>
+
+    <input name="Alamine_Aminotransferase" placeholder="ALT (SGPT)" required>
+
+    <input name="Aspartate_Aminotransferase" placeholder="AST (SGOT)" required>
+
+    <input name="Total_Protiens" placeholder="Total Proteins" required>
+
+    <input name="Albumin" placeholder="Albumin" required>
+
+    <input name="Albumin_and_Globulin_Ratio" placeholder="A/G Ratio" required>
+
+    <button type="submit">Predict</button>
+
+</form>
+</div>
+
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liver Disease Prediction</title>
+    <style>
+        body { font-family: Arial; max-width: 500px; margin: auto; }
+        .box { margin: 12px 0; }
+    </style>
+</head>
+<body>
+
+<h2>Liver Health Check</h2>
+
+<form action="/predict-liver" method="post">
+
+    <div class="box">
+        <label>Age</label><br>
+        <input type="number" name="Age" required>
+    </div>
+
+    <div class="box">
+        <label>Gender</label><br>
+        <select name="Gender">
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <label>Yellowing of Eyes/Skin (Jaundice)</label><br>
+        <input type="range" name="Total_Bilirubin" min="0" max="10" step="0.1">
+    </div>
+
+    <div class="box">
+        <label>Severe Jaundice Level</label><br>
+        <input type="range" name="Direct_Bilirubin" min="0" max="5" step="0.1">
+    </div>
+
+    <div class="box">
+        <label>Liver Enzyme Level</label><br>
+        <input type="range" name="Alkaline_Phosphotase" min="50" max="300" step="1">
+    </div>
+
+    <div class="box">
+        <label>Liver Damage Indicator (ALT)</label><br>
+        <input type="range" name="Alamine_Aminotransferase" min="10" max="200" step="1">
+    </div>
+
+    <div class="box">
+        <label>Liver Stress Indicator (AST)</label><br>
+        <input type="range" name="Aspartate_Aminotransferase" min="10" max="200" step="1">
+    </div>
+
+    <div class="box">
+        <label>Protein Level</label><br>
+        <input type="range" name="Total_Protiens" min="4" max="10" step="0.1">
+    </div>
+
+    <div class="box">
+        <label>Body Strength (Albumin)</label><br>
+        <input type="range" name="Albumin" min="2" max="6" step="0.1">
+    </div>
+
+    <div class="box">
+        <label>Protein Balance</label><br>
+        <input type="range" name="Albumin_and_Globulin_Ratio" min="0.5" max="2.5" step="0.1">
+    </div>
+
+    <button type="submit">Predict</button>
+
+</form>
+
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liver Disease Prediction</title>
+    <style>
+        body { font-family: Arial; max-width: 500px; margin: auto; }
+        .box { margin: 12px 0; }
+    </style>
+</head>
+<body>
+
+<h2>Liver Health Check</h2>
+
+<form action="/predict-liver" method="post">
+
+    <div class="box">
+        <label>Age</label><br>
+        <input type="number" name="Age" required>
+    </div>
+
+    <div class="box">
+        <label>Gender</label><br>
+        <select name="Gender">
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <label>Yellowing of Eyes/Skin (Jaundice)</label><br>
+        <input type="range" name="Total_Bilirubin" min="0" max="10" step="0.1">
+    </div>
+
+    <div class="box">
+        <label>Severe Jaundice Level</label><br>
+        <input type="range" name="Direct_Bilirubin" min="0" max="5" step="0.1">
+    </div>
+
+    <div class="box">
+        <label>Liver Enzyme Level</label><br>
+        <input type="range" name="Alkaline_Phosphotase" min="50" max="300" step="1">
+    </div>
+
+    <div class="box">
+        <label>Liver Damage Indicator (ALT)</label><br>
+        <input type="range" name="Alamine_Aminotransferase" min="10" max="200" step="1">
+    </div>
+
+    <div class="box">
+        <label>Liver Stress Indicator (AST)</label><br>
+        <input type="range" name="Aspartate_Aminotransferase" min="10" max="200" step="1">
+    </div>
+
+    <div class="box">
+        <label>Protein Level</label><br>
+        <input type="range" name="Total_Protiens" min="4" max="10" step="0.1">
+    </div>
+
+    <div class="box">
+        <label>Body Strength (Albumin)</label><br>
+        <input type="range" name="Albumin" min="2" max="6" step="0.1">
+    </div>
+
+    <div class="box">
+        <label>Protein Balance</label><br>
+        <input type="range" name="Albumin_and_Globulin_Ratio" min="0.5" max="2.5" step="0.1">
+    </div>
+
+    <button type="submit">Predict</button>
+
+</form>
+
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Liver Prediction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">🧬 Liver Health Check</div>
+
+<div class="result-card">
+<form action="/predict-liver" method="post">
+
+<div class="box"><input type="number" name="Age" placeholder="Age"></div>
+
+<div class="box">
+<select name="Gender">
+<option value="1">Male</option>
+<option value="0">Female</option>
+</select>
+</div>
+
+<div class="box"><input name="Total_Bilirubin" placeholder="Total Bilirubin"></div>
+<div class="box"><input name="Direct_Bilirubin" placeholder="Direct Bilirubin"></div>
+<div class="box"><input name="Alkaline_Phosphotase" placeholder="Alkaline"></div>
+<div class="box"><input name="Alamine_Aminotransferase" placeholder="ALT"></div>
+<div class="box"><input name="Aspartate_Aminotransferase" placeholder="AST"></div>
+<div class="box"><input name="Total_Protiens" placeholder="Proteins"></div>
+<div class="box"><input name="Albumin" placeholder="Albumin"></div>
+<div class="box"><input name="Albumin_and_Globulin_Ratio" placeholder="Ratio"></div>
+
+<button type="submit">🔍 Predict</button>
+
+</form>
+</div>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Liver Prediction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">🧬 Liver Health Check</div>
+
+<div class="card">
+<form action="/predict-liver" method="POST">
+
+<input type="number" name="Age" placeholder="Age">
+
+<select name="Gender">
+<option value="1">Male</option>
+<option value="0">Female</option>
+</select>
+
+<input name="Total_Bilirubin" placeholder="Total Bilirubin">
+<input name="Direct_Bilirubin" placeholder="Direct Bilirubin">
+<input name="Alkaline_Phosphotase" placeholder="Alkaline">
+<input name="Alamine_Aminotransferase" placeholder="ALT">
+<input name="Aspartate_Aminotransferase" placeholder="AST">
+<input name="Total_Protiens" placeholder="Proteins">
+<input name="Albumin" placeholder="Albumin">
+<input name="Albumin_and_Globulin_Ratio" placeholder="Ratio">
+
+<button type="submit">Predict</button>
+
+</form>
+</div>
+
+</body>
+</html>

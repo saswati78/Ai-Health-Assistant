@@ -1,0 +1,349 @@
+<!-- <!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Breast Cancer Prediction</title>
+</head>
+<body>
+    <h2>Breast Cancer Prediction</h2>
+    <form action="/predict-breast" method="post">
+        {% for feature in [
+            'radius_mean', 'texture_mean', 'perimeter_mean', 'area_mean', 'smoothness_mean',
+            'compactness_mean', 'concavity_mean', 'concave points_mean', 'symmetry_mean', 'fractal_dimension_mean',
+            'radius_se', 'texture_se', 'perimeter_se', 'area_se', 'smoothness_se',
+            'compactness_se', 'concavity_se', 'concave points_se', 'symmetry_se', 'fractal_dimension_se',
+            'radius_worst', 'texture_worst', 'perimeter_worst', 'area_worst', 'smoothness_worst',
+            'compactness_worst', 'concavity_worst', 'concave points_worst', 'symmetry_worst', 'fractal_dimension_worst'
+        ] %}
+            <label>{{ feature }}:</label>
+            <input type="number" step="any" name="{{ feature }}" required><br>
+        {% endfor %}
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html> 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breast Cancer Prediction</title>
+    <style>
+        body { font-family: Arial; max-width: 500px; margin: auto; }
+        .box { margin: 15px 0; }
+    </style>
+</head>
+<body>
+
+<h2>Breast Cancer Risk Check</h2>
+
+<form action="/predict-breast" method="post" onsubmit="prepareData()">
+
+    <div class="box">
+        <label>Tumor Size</label><br>
+        <input type="range" id="size" min="5" max="30" step="0.1">
+        <span id="size_val"></span>
+    </div>
+
+    <div class="box">
+        <label>Texture</label><br>
+        <select id="texture">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <label>Smoothness</label><br>
+        <input type="range" id="smooth" min="0" max="1" step="0.01">
+        <span id="smooth_val"></span>
+    </div>
+
+    <div class="box">
+        <label>Growth Speed</label><br>
+        <select id="growth">
+            <option value="slow">Slow</option>
+            <option value="moderate">Moderate</option>
+            <option value="fast">Fast</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <label>Pain</label><br>
+        <select id="pain">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+     🔥 Hidden 30 features 
+    <div id="hiddenFields"></div>
+
+    <button type="submit">Predict</button>
+</form>
+
+<script>
+// show values
+document.getElementById("size").oninput = function() {
+    document.getElementById("size_val").innerText = this.value;
+};
+
+document.getElementById("smooth").oninput = function() {
+    document.getElementById("smooth_val").innerText = this.value;
+};
+
+// feature names (MUST MATCH BACKEND)
+const featureNames = [
+'radius_mean','texture_mean','perimeter_mean','area_mean','smoothness_mean',
+'compactness_mean','concavity_mean','concave points_mean','symmetry_mean','fractal_dimension_mean',
+'radius_se','texture_se','perimeter_se','area_se','smoothness_se',
+'compactness_se','concavity_se','concave points_se','symmetry_se','fractal_dimension_se',
+'radius_worst','texture_worst','perimeter_worst','area_worst','smoothness_worst',
+'compactness_worst','concavity_worst','concave points_worst','symmetry_worst','fractal_dimension_worst'
+];
+
+// mapping
+function prepareData() {
+
+    let size = parseFloat(document.getElementById("size").value);
+    let texture = document.getElementById("texture").value;
+    let smooth = parseFloat(document.getElementById("smooth").value);
+    let growth = document.getElementById("growth").value;
+    let pain = parseInt(document.getElementById("pain").value);
+
+    let texture_val = texture === "low" ? 10 : texture === "medium" ? 20 : 30;
+    let growth_val = growth === "slow" ? 0.2 : growth === "moderate" ? 0.5 : 0.9;
+
+    let container = document.getElementById("hiddenFields");
+    container.innerHTML = "";
+
+    for (let i = 0; i < featureNames.length; i++) {
+
+        let val = (size * 2 + texture_val + smooth * 50 + growth_val * 10 + pain * 5) / (i + 1);
+
+        let input = document.createElement("input");
+        input.type = "hidden";
+        input.name = featureNames[i];
+        input.value = val;
+
+        container.appendChild(input);
+    }
+}
+</script>
+
+</body>
+</html> 
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breast Cancer Prediction</title>
+    <style>
+        body { font-family: Arial; max-width: 500px; margin: auto; }
+        .box { margin: 15px 0; }
+    </style>
+</head>
+<body>
+
+<h2>Breast Cancer Risk Check</h2>
+
+<form action="/predict-breast" method="post">
+
+    <div class="box">
+        <label>Tumor Radius (mean)</label>
+        <input type="number" step="any" name="radius_mean" required>
+    </div>
+
+    <div class="box">
+        <label>Tumor Radius (worst)</label>
+        <input type="number" step="any" name="radius_worst" required>
+    </div>
+
+    <div class="box">
+        <label>Texture (mean)</label>
+        <input type="number" step="any" name="texture_mean" required>
+    </div>
+
+    <div class="box">
+        <label>Smoothness</label>
+        <input type="number" step="any" name="smoothness_mean" required>
+    </div>
+
+    <div class="box">
+        <label>Concavity (mean)</label>
+        <input type="number" step="any" name="concavity_mean" required>
+    </div>
+
+    <div class="box">
+        <label>Concave Points (mean)</label>
+        <input type="number" step="any" name="concave points_mean" required>
+    </div>
+
+    <div class="box">
+        <label>Concave Points (worst)</label>
+        <input type="number" step="any" name="concave points_worst" required>
+    </div>
+
+    <button type="submit">Predict</button>
+
+</form>
+
+</body>
+</html> 
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breast Cancer Prediction</title>
+    <style>
+        body { font-family: Arial; max-width: 500px; margin: auto; }
+        .box { margin: 15px 0; }
+    </style>
+</head>
+<body>
+
+<h2>Breast Cancer Risk Check</h2>
+
+<form action="/predict-breast" method="post">
+
+    <div class="box">
+        <label>Tumor Radius (mean)</label>
+        <input type="number" step="any" name="radius_mean" required>
+    </div>
+
+    <div class="box">
+        <label>Tumor Radius (worst)</label>
+        <input type="number" step="any" name="radius_worst" required>
+    </div>
+
+    <div class="box">
+        <label>Texture (mean)</label>
+        <input type="number" step="any" name="texture_mean" required>
+    </div>
+
+    <div class="box">
+        <label>Smoothness</label>
+        <input type="number" step="any" name="smoothness_mean" required>
+    </div>
+
+    <div class="box">
+        <label>Concavity (mean)</label>
+        <input type="number" step="any" name="concavity_mean" required>
+    </div>
+
+    <div class="box">
+        <label>Concave Points (mean)</label>
+        <input type="number" step="any" name="concave_points_mean" required>
+    </div>
+
+    <div class="box">
+        <label>Concave Points (worst)</label>
+        <input type="number" step="any" name="concave_points_worst" required>
+    </div>
+
+    <button type="submit">Predict</button>
+
+</form>
+
+</body>
+</html> 
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Breast Cancer Prediction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">🎗️ Breast Cancer Check</div>
+
+<div class="result-card">
+<form action="/predict-breast" method="post">
+
+<div class="box"><input type="number" step="any" name="radius_mean" placeholder="Radius Mean"></div>
+<div class="box"><input type="number" step="any" name="radius_worst" placeholder="Radius Worst"></div>
+<div class="box"><input type="number" step="any" name="texture_mean" placeholder="Texture"></div>
+<div class="box"><input type="number" step="any" name="smoothness_mean" placeholder="Smoothness"></div>
+<div class="box"><input type="number" step="any" name="concavity_mean" placeholder="Concavity"></div>
+<div class="box"><input type="number" step="any" name="concave_points_mean" placeholder="Concave Points Mean"></div>
+<div class="box"><input type="number" step="any" name="concave_points_worst" placeholder="Concave Points Worst"></div>
+
+<button type="submit">🔍 Predict</button>
+
+</form>
+</div>
+
+</body>
+</html>-->
+<!-- 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Breast Cancer Prediction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">🎗 Breast Cancer Check</div>
+
+<div class="card">
+<form action="/predict-breast" method="POST">
+
+<input type="number" step="any" name="radius_mean" placeholder="Radius Mean">
+<input type="number" step="any" name="radius_worst" placeholder="Radius Worst">
+<input type="number" step="any" name="texture_mean" placeholder="Texture">
+<input type="number" step="any" name="smoothness_mean" placeholder="Smoothness">
+<input type="number" step="any" name="concavity_mean" placeholder="Concavity">
+<input type="number" step="any" name="concave_points_mean" placeholder="Concave Points Mean">
+<input type="number" step="any" name="concave_points_worst" placeholder="Concave Points Worst">
+
+<button type="submit">Predict</button>
+
+</form>
+</div>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Breast Cancer Prediction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">🎗 Breast Cancer Check</div>
+
+<div class="card">
+<form action="/predict-breast" method="POST">
+
+<input type="number" step="any" name="concave_points_mean" placeholder="Concave Points Mean" required>
+<input type="number" step="any" name="perimeter_worst" placeholder="Perimeter Worst" required>
+<input type="number" step="any" name="concave_points_worst" placeholder="Concave Points Worst" required>
+<input type="number" step="any" name="radius_worst" placeholder="Radius Worst" required>
+<input type="number" step="any" name="area_worst" placeholder="Area Worst" required>
+<input type="number" step="any" name="concavity_mean" placeholder="Concavity Mean" required>
+<input type="number" step="any" name="area_mean" placeholder="Area Mean" required>
+<input type="number" step="any" name="area_se" placeholder="Area SE" required>
+<input type="number" step="any" name="perimeter_mean" placeholder="Perimeter Mean" required>
+<input type="number" step="any" name="concavity_worst" placeholder="Concavity Worst" required>
+
+<button type="submit">Predict</button>
+
+</form>
+</div>
+
+</body>
+</html>
